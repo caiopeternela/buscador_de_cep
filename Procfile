@@ -1,1 +1,1 @@
-web: gunicorn encurtador_de_url.wsgi
+web: gunicorn buscador_de_cep.wsgi
