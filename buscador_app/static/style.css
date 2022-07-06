@@ -46,7 +46,7 @@ h2 {
     transform: translateX(-50%) translateY(-50%)
 }
 
-.input {
+.input, .input-errado {
     font-family: 'Permanent Marker', cursive;
     width: 325px;
     margin: 0;
@@ -76,4 +76,43 @@ h2 {
     background-color: black;
     color: white;
     border-radius: 5px;
+}
+
+.input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: green;
+    opacity: 1; /* Firefox */
+  }
+  
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: green;
+  }
+  
+  ::-ms-input-placeholder { /* Microsoft Edge */
+    color: green;
+  }
+
+.input-errado::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: red;
+    opacity: 1; /* Firefox */
+  }
+  
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: red;
+  }
+  
+  ::-ms-input-placeholder { /* Microsoft Edge */
+    color: red;
+  }
+
+h3 {
+    color: red;
+    font-family: 'Bree Serif', serif;
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%)
 }

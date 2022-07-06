@@ -14,7 +14,13 @@
     <h1>Buscador de CEP</h1>
     <form method='post' action="/endereco/">
         {% csrf_token %}
+        {% if deu_erro %}
+        <input type="text" class="input-errado" size="50px" name="cep" placeholder="CEP inválido, tente novamente">
+        {% elif cep_invalido %}
+        <input type="text" class="input-errado" size="50px" name="cep" placeholder="CEP inválido, tente novamente">
+        {% else %}
         <input type="text" class="input" size="50px" name="cep" placeholder="Digite o CEP a ser buscado">
+        {% endif %}
         <input type="submit" class="button" value="Buscar"></input>
     </form>
 </body>
