@@ -1,6 +1,8 @@
 from django.shortcuts import render
 import urllib.request, json 
 from urllib.error import HTTPError
+from django.http import JsonResponse, HttpResponse
+from .models import Endereco
 
 
 # Create your views here.
@@ -36,3 +38,18 @@ def endereco(request):
         return render(request, 'index.html', {'cep_invalido': cep_invalido()})
     except KeyError:
         return render(request, 'index.html', {'cep_invalido': cep_invalido()})
+
+def api(request, cep):
+    endereco = Endereco.objects.filter(cep=cep)
+    if not endereco:
+        resposta = {
+            "erro": "true"
+        }
+    else:
+        resposta = {
+            "cep": cep,
+            "logradouro": endereco[0].logradouro,
+            "bairro": endereco[0].bairro,
+            "cidade": endereco[0].cidade,
+        }
+    return HttpResponse(json.dumps(resposta, ensure_ascii=False, indent=2), content_type="application/json")
