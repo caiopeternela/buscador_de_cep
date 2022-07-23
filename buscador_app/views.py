@@ -12,15 +12,14 @@ def index(request):
 
 def buscador(cep):
     cep = cep.replace('-','').replace(' ', '').replace('.', '')
-    json_cep = 'https://viacep.com.br/ws/' + cep + '/json/'
+    json_cep = 'https://projeto-buscador-de-cep.herokuapp.com/api/' + cep
     with urllib.request.urlopen(json_cep) as url:
         dict_cep = json.loads(url.read().decode())
         output = []
         output.append('CEP: ' + dict_cep['cep'])
         output.append('Logradouro: ' + dict_cep['logradouro'])
         output.append('Bairro: ' + dict_cep['bairro'])
-        output.append('Cidade: ' + dict_cep['localidade'])
-        output.append('Estado: ' + dict_cep['uf'])
+        output.append('Cidade: ' + dict_cep['cidade'])
         return '\n\n'.join(output)
 
 def deu_erro(cep):
