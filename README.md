@@ -1,6 +1,6 @@
 # [Buscador de CEP](https://projeto-buscador-de-cep.herokuapp.com/)
 
-## Para acessar a api, utilize /api/cep na URL.
+## Para acessar a API, utilize /api/cep na URL.
 
 ### Por exemplo, a seguinte URL:
 ```
