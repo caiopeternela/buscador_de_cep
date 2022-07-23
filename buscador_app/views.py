@@ -3,6 +3,7 @@ import urllib.request, json
 from urllib.error import HTTPError
 from django.http import JsonResponse, HttpResponse
 from .models import Endereco
+from django.core.exceptions import ObjectDoesNotExist
 
 
 # Create your views here.
@@ -40,16 +41,17 @@ def endereco(request):
         return render(request, 'index.html', {'cep_invalido': cep_invalido()})
 
 def api(request, cep):
-    endereco = Endereco.objects.filter(cep=cep)
-    if not endereco:
-        resposta = {
+    cep = cep.replace('-','').replace(' ', '').replace('.', '')
+    try:
+        endereco = Endereco.objects.get(cep=cep)
+        dict = {
+            "cep": cep,
+            "logradouro": endereco.logradouro,
+            "bairro": endereco.bairro,
+            "cidade": endereco.cidade,
+        }
+    except ObjectDoesNotExist:
+        dict = {
             "erro": "true"
         }
-    else:
-        resposta = {
-            "cep": cep,
-            "logradouro": endereco[0].logradouro,
-            "bairro": endereco[0].bairro,
-            "cidade": endereco[0].cidade,
-        }
-    return HttpResponse(json.dumps(resposta, ensure_ascii=False, indent=2), content_type="application/json")
+    return HttpResponse(json.dumps(dict, ensure_ascii=False, indent=2), content_type="application/json")

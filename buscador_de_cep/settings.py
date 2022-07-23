@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-j=0rp!*i@t6d(tp-tpob-&s#=ml=mg^^-3woj!l7=ll-v8glfg
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -80,11 +80,16 @@ WSGI_APPLICATION = 'buscador_de_cep.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.getenv('POSTGRES_DB'),
-        'USER': os.getenv('POSTGRES_USER'),
-        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
-        'HOST': os.getenv('POSTGRES_HOST'),
-        'PORT': os.getenv('POSTGRES_PORT'),
+        # 'NAME': os.getenv('POSTGRES_DB'),
+        # 'USER': os.getenv('POSTGRES_USER'),
+        # 'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
+        # 'HOST': os.getenv('POSTGRES_HOST'),
+        # 'PORT': os.getenv('POSTGRES_PORT'),
+        'NAME': 'd8ul2m9aitmr74',
+        'USER': 'skkjefuhaukbpx',
+        'PASSWORD': '106ce150115d0ab6f50568bf4e19d1abcf0c3d0d39a2ea5927d5a914d4b538a7',
+        'HOST': 'ec2-52-200-215-149.compute-1.amazonaws.com',
+        'PORT': '5432'
     }
 }
 
@@ -124,6 +129,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
